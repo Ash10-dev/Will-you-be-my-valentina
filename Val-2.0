@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>A Question for You 💌</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .card {
+      background: #fff;
+      padding: 35px;
+      width: 360px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      animation: fadeIn 0.6s ease;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #555;
+      font-size: 14px;
+      min-height: 40px;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 30px;
+      font-size: 14px;
+      cursor: pointer;
+      margin: 10px;
+      transition: 0.3s ease;
+    }
+
+    .primary {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    .secondary {
+      background: #eee;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 22px;
+      animation: float 5s linear infinite;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-110vh); opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+  <h1 id="title">Hey, wait ✋</h1>
+  <p id="text">Before you scroll away… I have something important to ask.</p>
+
+  <div id="buttons">
+    <button class="primary" onclick="nextStep()">Okay 👀</button>
+  </div>
+</div>
+
+<script>
+  let step = 0;
+
+  function nextStep() {
+    step++;
+
+    if (step === 1) {
+      document.getElementById("title").innerText = "So here it is 💭";
+      document.getElementById("text").innerText =
+        "This might be unexpected… but it’s coming from a good place.";
+    }
+
+    else if (step === 2) {
+      document.getElementById("title").innerText = "No pressure 😌";
+      document.getElementById("text").innerText =
+        "Just an honest question. Take a second before answering.";
+    }
+
+    else if (step === 3) {
+      document.getElementById("title").innerText = "Will you be my Valentine? 💖";
+      document.getElementById("text").innerText =
+        "I promise laughs, good food, and being genuinely annoying.";
+
+      document.getElementById("buttons").innerHTML = `
+        <button class="primary" onclick="accepted()">Yes 💘</button>
+        <button class="secondary" onmouseover="moveNo()">No 🙄</button>
+      `;
+    }
+  }
+
+  function moveNo() {
+    const btn = event.target;
+    btn.style.position = "absolute";
+    btn.style.left = Math.random() * 200 + "px";
+    btn.style.top = Math.random() * 150 + "px";
+  }
+
+  function accepted() {
+    document.getElementById("card").innerHTML = `
+      <h1>YAYYYY 💕</h1>
+      <p>This just became my favourite decision ever.</p>
+      <p>Valentine confirmed 🥹✨</p>
+    `;
+    setInterval(createHeart, 300);
+  }
+
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = Math.random() * 2 + 4 + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }
+</script>
+
+</body>
+</html>
