@@ -102,15 +102,16 @@
     }
 
     else if (step === 2) {
-      document.getElementById("title").innerText = "No pressure 😌";
+      document.getElementById("title").innerText = "Don't mean to put pressure 😌";
       document.getElementById("text").innerText =
         "Just an honest question. Take a second before answering.";
     }
 
     else if (step === 3) {
-      document.getElementById("title").innerText = "Will you be my Valentine? 💖";
+      document.getElementById("title").innerText = " Ahh 👉🏻👈🏻 
+Po-Po will you be my Valentine ? 💖";
       document.getElementById("text").innerText =
-        "I promise laughs, good food, and being genuinely annoying.";
+        "I promise laughs, to treat you well , and being genuinely annoying :).";
 
       document.getElementById("buttons").innerHTML = `
         <button class="primary" onclick="accepted()">Yes 💘</button>
