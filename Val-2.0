@@ -81,7 +81,7 @@
 <body>
 
 <div class="card" id="card">
-  <h1 id="title">Hey, wait ✋</h1>
+  <h1 id="title"> PO, wait ✋</h1>
   <p id="text">Before you scroll away… I have something important to ask.</p>
 
   <div id="buttons">
@@ -98,7 +98,7 @@
     if (step === 1) {
       document.getElementById("title").innerText = "So here it is 💭";
       document.getElementById("text").innerText =
-        "This might be unexpected… but it’s coming from a good place.";
+        "This might be unexpected… but it’s coming from my heart.";
     }
 
     else if (step === 2) {
