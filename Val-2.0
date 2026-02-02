@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <title>A Question for You 💌</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
@@ -12,6 +15,7 @@
       align-items: center;
       justify-content: center;
       font-family: 'Poppins', sans-serif;
+      overflow: hidden;
     }
 
     .card {
@@ -34,6 +38,15 @@
       color: #555;
       font-size: 14px;
       min-height: 40px;
+    }
+
+    input {
+      padding: 10px;
+      width: 90%;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      margin-bottom: 15px;
+      font-size: 14px;
     }
 
     button {
@@ -81,8 +94,10 @@
 <body>
 
 <div class="card" id="card">
-  <h1 id="title"> PO, wait ✋</h1>
-  <p id="text">Before you scroll away… I have something important to ask.</p>
+  <h1 id="title">PO, wait ✋</h1>
+  <p id="text">Before you scroll away… tell me your name?</p>
+
+  <input id="nameInput" placeholder="Type your name 👀" />
 
   <div id="buttons">
     <button class="primary" onclick="nextStep()">Okay 👀</button>
@@ -91,49 +106,79 @@
 
 <script>
   let step = 0;
+  let userName = "";
 
   function nextStep() {
     step++;
 
     if (step === 1) {
-      document.getElementById("title").innerText = "So here it is 💭";
+      userName = document.getElementById("nameInput").value || "PO";
+
+      document.getElementById("title").innerText = "Hey " + userName + " 💭";
       document.getElementById("text").innerText =
         "This might be unexpected… but it’s coming from my heart.";
+
+      document.getElementById("nameInput").remove();
     }
 
     else if (step === 2) {
-      document.getElementById("title").innerText = "Don't mean to put pressure 😌";
+      document.getElementById("title").innerText = "No pressure 😌";
       document.getElementById("text").innerText =
         "Just an honest question. Take a second before answering.";
     }
 
     else if (step === 3) {
-      document.getElementById("title").innerText = " Ahh 👉🏻👈🏻 
-Po-Po will you be my Valentine ? 💖";
+      document.getElementById("title").innerText =
+        "Ahh 👉🏻👈🏻 " + userName + ", will you be my Valentine? 💖";
       document.getElementById("text").innerText =
-        "I promise laughs, to treat you well , and being genuinely annoying :).";
+        "I promise laughs, treating you well, and being genuinely annoying :)";
 
       document.getElementById("buttons").innerHTML = `
         <button class="primary" onclick="accepted()">Yes 💘</button>
-        <button class="secondary" onmouseover="moveNo()">No 🙄</button>
+        <button class="secondary" onmouseover="moveNo(event)">No 🙄</button>
       `;
     }
   }
 
-  function moveNo() {
-    const btn = event.target;
+  function moveNo(e) {
+    const btn = e.target;
     btn.style.position = "absolute";
-    btn.style.left = Math.random() * 200 + "px";
-    btn.style.top = Math.random() * 150 + "px";
+    btn.style.left = Math.random() * 220 + "px";
+    btn.style.top = Math.random() * 160 + "px";
   }
 
   function accepted() {
+    document.getElementById("card").innerHTML = `
+      <h1>Processing... 💌</h1>
+      <p>Redirecting securely...</p>
+    `;
+
+    setTimeout(() => {
+      window.location.href =
+        "mailto:yourmail@gmail.com" +
+        "?subject=Valentine%20Accepted%20💖" +
+        "&body=Hey,%0A%0A" + userName +
+        "%20just%20clicked%20YES.%0A%0AValentine%20confirmed%20🥹💘";
+    }, 1500);
+
+    setTimeout(finalScreen, 3000);
+  }
+
+  function finalScreen() {
     document.getElementById("card").innerHTML = `
       <h1>YAYYYY 💕</h1>
       <p>This just became my favourite decision ever.</p>
       <p>Valentine confirmed 🥹✨</p>
     `;
     setInterval(createHeart, 300);
+  }
+
+  function rejected() {
+    document.getElementById("card").innerHTML = `
+      <h1>404 ❌</h1>
+      <p>Valentine request not found.</p>
+      <p>Please refresh and reconsider 😌</p>
+    `;
   }
 
   function createHeart() {
